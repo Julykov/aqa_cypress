@@ -1,0 +1,27 @@
+{
+  "name": "aqa_cypress",
+  "version": "1.0.0",
+  "description": "Description for aqa-cypress",
+  "keywords": [
+    "nodejs"
+  ],
+  "homepage": "https://github.com/Julykov/aqa_cypress#readme",
+  "bugs": {
+    "url": "https://github.com/Julykov/aqa_cypress/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Julykov/aqa_cypress.git"
+  },
+  "license": "MIT",
+  "author": "Yuliia",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "npx cypress open"
+  },
+  "devDependencies": {
+    "cypress": "^15.8.2"
+  }
+}
