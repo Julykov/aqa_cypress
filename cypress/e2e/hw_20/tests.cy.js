@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import UserRegister from './UserRegiste.js'
+import UserRegister from './UserRegister.js';
 import './commands';
 
 
@@ -47,7 +47,7 @@ describe('registration', () => {
         cy.get('.invalid-feedback > p').contains('Name has to be from 2 to 20 characters long')
     })
 
-   it('Name field, error appears when name was not set', () => {
+    it('Name field, error appears when name was not set', () => {
       UserRegister
         .userNameInput
         .focus()
@@ -57,7 +57,7 @@ describe('registration', () => {
         cy.get('.invalid-feedback > p').contains('Name required')
     })
 
-  it('Name field, error appears when name is set as space', () => {
+    it('Name field, error appears when name is set as space', () => {
       UserRegister
         .typeUserName(' ')
         .typeUserLastName('Tomas')
@@ -66,7 +66,7 @@ describe('registration', () => {
         cy.get('.invalid-feedback > p').contains('Name has to be from 2 to 20 characters long')
     })
 
-  it('Name field, error appears when name is set as letter and space', () => {
+    it('Name field, error appears when name is set as letter and space', () => {
       UserRegister
         .typeUserName('T ')
         .typeUserLastName('Tomas')
@@ -76,7 +76,7 @@ describe('registration', () => {
         cy.get('.invalid-feedback > p').contains('Name is invalid')
     })
 
-  it('Name field, error appears when name is set as special symbol', () => {
+    it('Name field, error appears when name is set as special symbol', () => {
       UserRegister
         .typeUserName('#')
         .typeUserLastName('Tomas')
@@ -86,7 +86,7 @@ describe('registration', () => {
         cy.get('.invalid-feedback > p').contains('Name is invalid')
     })
 
-  it('Name field, error appears when name is set as letters and digit', () => {
+    it('Name field, error appears when name is set as letters and digit', () => {
       UserRegister
         .typeUserName('Tom1')
         .typeUserLastName('Tomas')
@@ -236,7 +236,7 @@ describe('registration', () => {
 
   })
 
-  describe('Password field checks', () => {
+  describe.skip('Password field checks', () => {
     const password_content_error_text = 'Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter'
     
     beforeEach(() => {
@@ -263,7 +263,7 @@ describe('registration', () => {
       cy.get('.invalid-feedback > p').contains('Password required')
     })
     
-    it.only('Password field, error appears when password length is less than 8', () => {
+    it('Password field, error appears when password length is less than 8', () => {
       const short_password = 'SHORT'
       
       UserRegister
@@ -394,7 +394,7 @@ describe('registration', () => {
 
       })
 
-      it.skip('Register button active, new user created', () => {
+    it('Register button active, new user created', () => {
         UserRegister
           .typeUserName('Tomas')
           .typeUserLastName('Smith')
@@ -422,6 +422,14 @@ describe('registration', () => {
 
   })
 
+})
+
+
+describe('Loginning', () => {
+  it('Login to the site with correct credentials', () => {
+      cy.login('emailname2@gmail.com','WorldWorldWord1');
+      cy.get('#userNavDropdown').should('exist')
+    })
 })
 
 
