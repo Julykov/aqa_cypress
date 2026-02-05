@@ -19,9 +19,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open": "npx cypress open"
+    "cypress:open": "npx cypress open",
+    "pretest:hw_21": "rm -rf cypress/results",
+    "test:hw_21:prod": "cypress run --config-file cypress.config.prod.js --spec \"cypress/e2e/hw_21/**/*.cy.js\"",
+    "open:hw_21:prod": "cypress open --config-file cypress.config.prod.js --config \"specPattern=cypress/e2e/hw_21/**/*.cy.js\"",
+    "test:hw_21:staging": "cypress run --config-file cypress.config.staging.js --spec \"cypress/e2e/hw_21/**/*.cy.js\"",
+    "open:hw_21:staging": "cypress open --config-file cypress.config.staging.js --config \"specPattern=cypress/e2e/hw_21/**/*.cy.js\"",
+    "report:merge": "mochawesome-merge cypress/results/*.json > cypress/results/report.json",
+    "report:generate": "npx merge cypress/results/mochawesome.json --reportDir cypress/reports --inline",
+    "report": "npm run report:merge && npm run report:generate",
+    "report:create": "npx mochawesome-report-generator cypress/results/mochawesome.json --reportDir cypress/reports --inline",
+    "test:hw_21:prod:full": "npm run pretest:hw_21 && npm run test:hw_21:prod || npm run report || npm run report2",
+    "test:hw_21:staging:full": "npm run pretest:hw_21 && npm run test:hw_21:prod || npm run report"
   },
   "devDependencies": {
-    "cypress": "^15.8.2"
+    "cypress": "^15.8.2",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.0",
+    "mochawesome-report-generator": "^6.3.2"
   }
 }

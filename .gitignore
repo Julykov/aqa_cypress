@@ -1,2 +1,5 @@
 node_modules/
 tmp/
+cypress.env.json
+cypress.env.prod.json
+cypress.env.staging.json
