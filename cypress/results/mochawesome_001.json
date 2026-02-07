@@ -1,24 +1,24 @@
 {
   "stats": {
     "suites": 3,
-    "tests": 3,
+    "tests": 4,
     "passes": 2,
-    "pending": 3,
-    "failures": -2,
-    "start": "2026-02-07T16:11:55.563Z",
-    "end": "2026-02-07T16:12:02.598Z",
-    "duration": 7035,
+    "pending": 2,
+    "failures": 0,
+    "start": "2026-02-07T16:13:08.048Z",
+    "end": "2026-02-07T16:13:22.252Z",
+    "duration": 14204,
     "testsRegistered": 5,
-    "passPercent": 100,
-    "pendingPercent": 60,
-    "other": 2,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 40,
+    "other": 1,
     "hasOther": true,
     "skipped": 0,
     "hasSkipped": false
   },
   "results": [
     {
-      "uuid": "bb666391-35e5-4878-9142-3219ba0ff934",
+      "uuid": "a9f90dd9-edb2-41e9-b9fc-78f2d426a480",
       "title": "",
       "fullFile": "cypress\\e2e\\hw_22\\tests.cy.js",
       "file": "cypress\\e2e\\hw_22\\tests.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3f908d98-98ef-4294-901f-a842f8db59c9",
+          "uuid": "afd3c07e-f125-42f0-a1ca-71ea36efefaf",
           "title": "Testing cars and expenses",
           "fullFile": "",
           "file": "",
@@ -36,7 +36,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "39306307-e78e-411f-9b9d-6d1ee290197d",
+              "uuid": "82458192-200c-4f80-affe-59dd34c2a658",
               "title": "Adding a new car",
               "fullFile": "",
               "file": "",
@@ -47,7 +47,7 @@
                   "title": "Add new car",
                   "fullTitle": "Testing cars and expenses Adding a new car Add new car",
                   "timedOut": null,
-                  "duration": 4890,
+                  "duration": 4815,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -56,8 +56,8 @@
                   "context": null,
                   "code": "cy.intercept('POST', '/api/cars').as('createCar'); //https://qauto.forstudy.space/api/cars\n_GaragePage.default.clickAddCarButtom();\n_GaragePage.default.selectBrandInput('BMW') //Audi, BMW, Ford, Porsche, Fiat\n.selectModelInput('Z3') //Audi: TT, R8, Q7, A6, A8\n.typeMileageInput(150).clickAddCarFinishButtom();\ncy.wait('@createCar').then(interception => {\n  //cy.wait(1000);\n  cy.log('Query data:', interception.request.body);\n  cy.log('Server response:', interception.response.body);\n  expect(interception.response.statusCode).to.eq(201);\n  expect(interception.response.body).to.have.property('data');\n  const carId = interception.response.body.data.id;\n  cy.writeFile('cypress/fixtures/carId.json', {\n    'id': carId\n  });\n});\ncy.get(':nth-child(1) > app-car > .car > .car-heading > .car_base > .car-group > .car_name').contains('BMW Z3');",
                   "err": {},
-                  "uuid": "bf1e879b-7e41-4da2-80e1-51a260390a52",
-                  "parentUUID": "39306307-e78e-411f-9b9d-6d1ee290197d",
+                  "uuid": "40c5d62a-be65-4707-8fca-0043d3987fdf",
+                  "parentUUID": "82458192-200c-4f80-affe-59dd34c2a658",
                   "isHook": false,
                   "skipped": false
                 },
@@ -65,7 +65,7 @@
                   "title": "Checking created car exists in the car list through api",
                   "fullTitle": "Testing cars and expenses Adding a new car Checking created car exists in the car list through api",
                   "timedOut": null,
-                  "duration": 2062,
+                  "duration": 2124,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -74,27 +74,27 @@
                   "context": null,
                   "code": "cy.fixture('carId.json').then(carData => {\n  const id = carData.id; //479935\n  cy.request('GET', 'https://qauto.forstudy.space/api/cars').then(response => {\n    const myCar = response.body.data.find(car => car.id === id);\n    expect(myCar).to.exist;\n    expect(myCar.brand).to.eq('BMW');\n    expect(myCar.model).to.eq('Z3');\n    expect(myCar.initialMileage).to.eq(150);\n  });\n});",
                   "err": {},
-                  "uuid": "7e9daec7-c245-433d-ad50-53a366132ca6",
-                  "parentUUID": "39306307-e78e-411f-9b9d-6d1ee290197d",
+                  "uuid": "73335534-273b-44df-be6e-e89cae9ba6d8",
+                  "parentUUID": "82458192-200c-4f80-affe-59dd34c2a658",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "bf1e879b-7e41-4da2-80e1-51a260390a52",
-                "7e9daec7-c245-433d-ad50-53a366132ca6"
+                "40c5d62a-be65-4707-8fca-0043d3987fdf",
+                "73335534-273b-44df-be6e-e89cae9ba6d8"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 6952,
+              "duration": 6939,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "56c1d780-5fbb-4610-ab95-ec2b225c7a34",
+              "uuid": "0600b6ac-09ac-4909-b4b8-f563263e61b5",
               "title": "Adding fuel expenses",
               "fullFile": "",
               "file": "",
@@ -105,17 +105,21 @@
                   "title": "Adding fuel expenses on Fuel Expenses page",
                   "fullTitle": "Testing cars and expenses Adding fuel expenses Adding fuel expenses on Fuel Expenses page",
                   "timedOut": null,
-                  "duration": 0,
-                  "state": "pending",
+                  "duration": 7136,
+                  "state": "failed",
                   "speed": null,
                   "pass": false,
-                  "fail": false,
-                  "pending": true,
+                  "fail": true,
+                  "pending": false,
                   "context": null,
                   "code": "_FuelExpensesPage.default.clickFuelExpensesSidebarBtn();\n_FuelExpensesPage.default.selectFuelExpensesDropdown('BMW Z3') //Audi TT, BMW Z3\n.clickAddFuelExpensesBtn();\n_FuelExpensesPage.default.increaseMileage(10);\n_FuelExpensesPage.default.typeLitersNumInput(10).typeTotalCostInput(100).clickFuelExpensesSubmitBtn();\ncy.get('tbody > tr > :nth-child(2)').should('exist').contains('160');\ncy.contains('tr', '03.02.2026').find('td').should('contain', '100');",
-                  "err": {},
-                  "uuid": "a56dccb9-f9dd-4e2e-b2de-3b56454eab0f",
-                  "parentUUID": "56c1d780-5fbb-4610-ab95-ec2b225c7a34",
+                  "err": {
+                    "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: '03.02.2026' within the selector: 'tr' but never did.",
+                    "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: '03.02.2026' within the selector: 'tr' but never did.\n    at Context.eval (webpack://aqa_cypress/./cypress/e2e/hw_22/tests.cy.js:99:15)",
+                    "diff": null
+                  },
+                  "uuid": "2b4ab7d7-07ad-40ec-837d-a1d091842c3a",
+                  "parentUUID": "0600b6ac-09ac-4909-b4b8-f563263e61b5",
                   "isHook": false,
                   "skipped": false
                 },
@@ -132,8 +136,8 @@
                   "context": null,
                   "code": "cy.fixture('carId.json').then(carData => {\n  const id = carData.id; //479935\n  cy.addExpense(expense_data).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body.status).to.eq('ok');\n    expect(response.body.data).to.have.property('id'); //418814  \n    expect(response.body.data).to.have.property('carId');\n    expect(response.body.data.carId).to.eq(479935);\n    expect(response.body.data).to.have.property('reportedAt');\n    expect(response.body.data.reportedAt).to.eq(\"2026-02-07\");\n    expect(response.body.data).to.have.property('mileage');\n    expect(response.body.data.mileage).to.eq(160);\n    expect(response.body.data).to.have.property('liters');\n    expect(response.body.data.liters).to.eq(11);\n    expect(response.body.data).to.have.property('totalCost');\n    expect(response.body.data.totalCost).to.eq(11);\n  });\n});",
                   "err": {},
-                  "uuid": "78c7a967-b676-4c3a-914f-91826ef7df49",
-                  "parentUUID": "56c1d780-5fbb-4610-ab95-ec2b225c7a34",
+                  "uuid": "138a96b9-21a9-4ea1-9a85-2224ce37ce6b",
+                  "parentUUID": "0600b6ac-09ac-4909-b4b8-f563263e61b5",
                   "isHook": false,
                   "skipped": false
                 },
@@ -150,22 +154,23 @@
                   "context": null,
                   "code": "cy.fixture('carId.json').then(carData => {\n  const id = carData.id; //479935\n  cy.request('GET', 'https://qauto.forstudy.space/api/cars').then(response => {\n    const myCar = response.body.data.find(car => car.id === id);\n    expect(myCar).to.exist;\n    expect(myCar.brand).to.eq('BMW');\n    expect(myCar.model).to.eq('Z3');\n    expect(myCar.initialMileage).to.eq(150);\n    const brand = myCar.brand;\n    const model = myCar.model;\n    cy.log(brand);\n    cy.log(model);\n    _FuelExpensesPage.default.clickFuelExpensesSidebarBtn();\n    _FuelExpensesPage.default.selectFuelExpensesDropdown(`${brand} ${model}`); //'BMW Z3'\n    cy.get('tr').filter(':contains(\"07.02.2026\")').filter(':contains(\"160\")').filter(':contains(\"11L\")').filter(':contains(\"11.00 USD\")').should('exist');\n  });\n});",
                   "err": {},
-                  "uuid": "a79efb80-3293-4c42-be18-7f5bbf3b6908",
-                  "parentUUID": "56c1d780-5fbb-4610-ab95-ec2b225c7a34",
+                  "uuid": "89a5bcd1-90f3-4b60-8352-063b12b2bfb1",
+                  "parentUUID": "0600b6ac-09ac-4909-b4b8-f563263e61b5",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [],
-              "failures": [],
+              "failures": [
+                "2b4ab7d7-07ad-40ec-837d-a1d091842c3a"
+              ],
               "pending": [
-                "a56dccb9-f9dd-4e2e-b2de-3b56454eab0f",
-                "78c7a967-b676-4c3a-914f-91826ef7df49",
-                "a79efb80-3293-4c42-be18-7f5bbf3b6908"
+                "138a96b9-21a9-4ea1-9a85-2224ce37ce6b",
+                "89a5bcd1-90f3-4b60-8352-063b12b2bfb1"
               ],
               "skipped": [],
-              "duration": 0,
+              "duration": 7136,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000

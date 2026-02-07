@@ -17,7 +17,7 @@
   "author": "Yuliia",
   "type": "commonjs",
   "main": "index.js",
-  "scripts": {
+  "tmp_scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "npx cypress open",
     "pretest:hw_21": "rm -rf cypress/results",
@@ -32,10 +32,22 @@
     "test:hw_21:prod:full": "npm run pretest:hw_21 && npm run test:hw_21:prod || npm run report || npm run report2",
     "test:hw_21:staging:full": "npm run pretest:hw_21 && npm run test:hw_21:prod || npm run report"
   },
+  "scripts": {
+    "test:hw_22:prod": "cypress run --config-file cypress.config.prod.js --spec \"cypress/e2e/hw_22/**/*.cy.js\"",
+    "open:hw_22:prod": "cypress open --config-file cypress.config.prod.js --config \"specPattern=cypress/e2e/hw_22/**/*.cy.js\"",
+        "report:generate": "npx merge cypress/results/mochawesome.json --reportDir cypress/reports --inline",
+    "report": "npm run report:merge && npm run report:generate",
+    "report:create": "npx mochawesome-report-generator cypress/results/mochawesome.json --reportDir cypress/reports --inline",
+    "pretest:hw_22": "rm -rf cypress/results",
+    "test:hw_22:prod:full": "npm run pretest:hw_22 && npm run test:hw_22:prod || npm run report || npm run report:create"
+  },
   "devDependencies": {
     "cypress": "^15.8.2",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.1.0",
     "mochawesome-report-generator": "^6.3.2"
+  },
+  "dependencies": {
+    "cypress-plugin-api": "^2.11.2"
   }
 }
