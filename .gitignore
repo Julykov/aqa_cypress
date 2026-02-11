@@ -3,3 +3,5 @@ tmp/
 cypress.env.json
 cypress.env.prod.json
 cypress.env.staging.json
+screenshots
+cypress/results/

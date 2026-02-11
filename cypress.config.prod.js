@@ -12,7 +12,7 @@ module.exports = defineConfig({
   },
   // --------------------------------------------
   e2e: {
-    baseUrl: "https://qauto.forstudy.space/",
+    baseUrl: "https://qauto.forstudy.space",
     viewportHeight: 900,
     viewportWidth: 1400,
     env: {
