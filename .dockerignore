@@ -1,0 +1,11 @@
+node_nodules
+cypress/reports
+cypress/fixtures
+cypress/results
+cypress/screenshots
+.git
+*.md
+.env*
+cypres.env.prod.json
+cypres.env.staging.json
+cypress.config.js
