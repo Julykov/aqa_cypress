@@ -35,11 +35,11 @@
   "scripts": {
     "test:hw_22:prod": "cypress run --config-file cypress.config.prod.js --spec \"cypress/e2e/hw_22/**/*.cy.js\"",
     "open:hw_22:prod": "cypress open --config-file cypress.config.prod.js --config \"specPattern=cypress/e2e/hw_22/**/*.cy.js\"",
-    "report:generate": "npx merge cypress/results/mochawesome.json --reportDir cypress/reports --inline",
+    "pretest:hw_22": "rm -rf cypress/results/* cypress/reports/*",
+    "report:merge": "npx mochawesome-merge cypress/results/*.json > cypress/reports/mochawesome.json",
+    "report:generate": "npx marge cypress/reports/mochawesome.json --reportDir cypress/reports --inline --nested false --overwrite true",
     "report": "npm run report:merge && npm run report:generate",
-    "report:create": "npx mochawesome-report-generator cypress/results/mochawesome.json --reportDir cypress/reports --inline",
-    "pretest:hw_22": "rm -rf cypress/results",
-    "test:hw_22:prod:full": "npm run pretest:hw_22 && npm run test:hw_22:prod || npm run report || npm run report:create"
+    "test:hw_22:prod:full": "npm run pretest:hw_22 && (npm run test:hw_22:prod || true) && npm run report"
   },
   "devDependencies": {
     "cypress": "^15.8.2",

@@ -1,5 +1,12 @@
 const { defineConfig } = require("cypress");
-const prodEnv = require("./cypress.env.prod.json");
+
+
+let prodEnv
+try {
+  prodEnv = require("./cypress.env.prod.json");
+} catch (e) {
+  prodEnv = {}
+}
 
 module.exports = defineConfig({
   // ----- reports settings --------------------
@@ -16,7 +23,8 @@ module.exports = defineConfig({
     viewportHeight: 900,
     viewportWidth: 1400,
     env: {
-      ...prodEnv // Копируем всё из файла в переменные Cypress
+      LOGIN: prodEnv.LOGIN || process.env.USER_EMAIL,
+      PASSWORD: prodEnv.PASSWORD || process.env.USER_PASSWORD
     }
   },
 });

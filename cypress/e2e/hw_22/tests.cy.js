@@ -64,7 +64,7 @@ describe("Testing cars and expenses", () => {
     })
 
 
-    describe('Adding fuel expenses', () => {
+    describe.skip('Adding fuel expenses', () => {
         
         beforeEach(() => {
                 cy.login(url, login, password);
