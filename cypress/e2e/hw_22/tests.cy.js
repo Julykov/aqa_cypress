@@ -78,7 +78,7 @@ describe("Testing cars and expenses", () => {
             
             const expense_data = {
                 "carId": id,
-                "reportedAt": "2026-02-10",
+                "reportedAt": "2026-02-28",
                 "mileage": 160,
                 "liters": 11,
                 "totalCost": 11,
@@ -99,7 +99,7 @@ describe("Testing cars and expenses", () => {
                     expect(response.body.data).to.have.property('carId');
                     expect(response.body.data.carId).to.eq(id);
                     expect(response.body.data).to.have.property('reportedAt');
-                    expect(response.body.data.reportedAt).to.eq("2026-02-10");
+                    expect(response.body.data.reportedAt).to.eq("2026-02-28");
                     expect(response.body.data).to.have.property('mileage');
                     expect(response.body.data.mileage).to.eq(160);
                     expect(response.body.data).to.have.property('liters');
@@ -133,7 +133,7 @@ describe("Testing cars and expenses", () => {
                 FuelExpensesPage
                     .selectFuelExpensesDropdown(`${brand} ${model}`)       //'BMW Z3'
         
-                cy.get('tr').filter(':contains("10.02.2026")')
+                cy.get('tr').filter(':contains("28.02.2026")')
                     .filter(':contains("160")')
                     .filter(':contains("11L")')
                     .filter(':contains("11.00 USD")')

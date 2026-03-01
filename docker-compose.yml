@@ -1,0 +1,13 @@
+services:
+  cypress-tests:
+    build: .
+    image: my-docker-tests
+    container_name: hw_cypress_run
+    volumes: 
+      - ./cypress.env.prod.json:/app/cypress.env.prod.json
+      - ./cypress/results:/app/cypress/results/
+      - ./cypress/reports:/app/cypress/reports/
+    command: ["cypress", "run", "--browser", "firefox", "--config-file", "cypress.config.prod.js", 
+            "--spec", "cypress/e2e/hw_22/**/*.cy.js"]
+    environment:
+      - CYPRESS_CONFIG_FILE=cypress.config.prod.js
