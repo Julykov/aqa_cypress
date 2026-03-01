@@ -23,6 +23,7 @@ jobs:
             - name: Generate report
               if: always()
               run: |
+                mkdir -p cypress/reports
                 npx mochawesome-merge cypress/results/*.json > cypress/reports/mochawesome.json
                 npx mochawesome-report-generator cypress/reports/mochawesome.json --reportDir cypress/reports --inline
 
