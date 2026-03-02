@@ -37,7 +37,7 @@
     "open:hw_22:prod": "cypress open --config-file cypress.config.prod.js --config \"specPattern=cypress/e2e/hw_22/**/*.cy.js\"",
     "pretest:hw_22": "rm -rf cypress/results/* cypress/reports/*",
     "report:merge": "npx mochawesome-merge cypress/results/*.json > cypress/reports/mochawesome.json",
-    "report:generate": "npx marge cypress/reports/mochawesome.json --reportDir cypress/reports --inline --nested false --overwrite true",
+    "report:generate": "npx marge cypress/reports/mochawesome.json --reportDir . --inline --nested false --overwrite true",
     "report": "npm run report:merge && npm run report:generate",
     "test:hw_22:prod:full": "npm run pretest:hw_22 && (npm run test:hw_22:prod || true) && npm run report"
   },
