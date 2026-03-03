@@ -1,0 +1,35 @@
+name: Tests in Docker
+on: push
+jobs:
+    cypress-run:
+        runs-on: ubuntu-22.04
+        container:
+            image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            
+            - name: Cypress run
+              uses: cypress-io/github-action@v6
+              env:
+                USER_EMAIL: ${{secrets.USER_EMAIL}}
+                USER_PASSWORD: ${{secrets.USER_PASSWORD}}
+              with:
+                browser: chrome
+                config-file: cypress.config.prod.js
+                spec: cypress/e2e/hw_22/tests.cy.js
+              continue-on-error: true
+
+            - name: Generate report
+              if: always()
+              run: |
+                mkdir -p cypress/reports
+                npx mochawesome-merge cypress/results/*.json > cypress/reports/mochawesome.json
+                npx mochawesome-report-generator cypress/reports/mochawesome.json --reportDir cypress/reports --inline
+
+            - name: Upload Artefacts
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name: cypress-report
+                path: cypress/reports
